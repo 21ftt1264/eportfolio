@@ -125,7 +125,7 @@
 
 <div class="hideall matured"><button id="btnresult" style="align-self: center;" onclick="eli()">Click to show eligibility status</button></div><div class="hideall matured" style="grid-column:2/span 2" id="status"></div>
 <div class="hideall matured" id="totalpoints"></div>
-<div style="grid-column:1/span 3"></div><div><button>reset form</button></div>
+<div style="grid-column:1/span 3"></div><div><button onclick="reset()">reset form</button></div>
 
 </div>
 </form>
@@ -142,6 +142,17 @@
 
 // additionally
 // getElementsByClassName
+
+var form = document.getElementsByClassName("hideall")
+
+function hideform(){
+  if(age.value == "0"){
+    for (var i = 0; i < form.length; i++) {
+      form[i].style.display = "none";
+    }
+  }
+}
+
 
 function age() {
   var x = document.getElementById('adult').value;   //x = over/under25
@@ -164,6 +175,27 @@ function age() {
 
   }
 
+function eng(){
+  form[2].style.visibility = "visible";
+
+  if(eng[0].checked){
+    engolevel.style.display = "block";
+  } else{
+    engolevel.style.display = "none";
+  }
+
+    if(eng[1].checked){
+    engigcse.style.display = "block";
+  } else{
+    engigcse.style.display = "none";
+  } 
+
+    if(eng[2].checked){
+    engielts.style.display = "block";
+  } else{
+    engielts.style.display = "none";
+  }
+}
 
 function eng() {
   var eng = document.getElementsByName('english');  
@@ -194,10 +226,10 @@ function eng() {
 
 
 function pointgce() {
-  var eng = document.getElementById('engolevel').value;
+  var engolevel = document.getElementById('engolevel').value;
   var point = document.getElementById('engpoints');
 
-  switch(eng){
+  switch(engolevel){
     case "A1": point.innerHTML="1"; break;
     case "A2": point.innerHTML="2"; break;
     case "B3": point.innerHTML="3"; break;
@@ -210,10 +242,10 @@ function pointgce() {
   }
 
 function pointigce() {
-  var eng = document.getElementById('engigcse').value;
+  var engigcse = document.getElementById('engigcse').value;
   var point = document.getElementById('engpoints');
 
-  switch(eng){
+  switch(engigcse){
     case "A*": point.innerHTML="1"; break;
     case "A": point.innerHTML="2"; break;
     case "B": point.innerHTML="3"; break;
@@ -226,10 +258,10 @@ function pointigce() {
   }
 
 function pointielts() {
-  var eng = document.getElementById('engielts').value;
+  var engielts = document.getElementById('engielts').value;
   var point = document.getElementById('engpoints');
 
-  switch(eng){
+  switch(engielts){
     case "9.0": point.innerHTML="1"; break;
     case "8.5": point.innerHTML="2"; break;
     case "8.0": point.innerHTML="3"; break;
@@ -333,6 +365,24 @@ function eli() {
       st.innerHTML= "You did not specify all subjects!";
       st.style.color="red";
     }
+  }
+
+  function reset() {
+
+      if (age.value = "0"){
+
+      eng[0].checked = false;
+      eng[1].checked = false;
+      eng[2].checked = false; 
+
+      resetMathsValue();
+
+      totalPoints = 0; engPoints = 0; mathsPoints = 0; subjRPoints = 0;
+
+      status.innerHTML = "";
+    }
+      hideAll();
+
   }
 
 </script>
